@@ -4,9 +4,9 @@ import savat from "../images/savat.png";
 
 export default function Header() {
   return (
-    <header className="bg-gray-100 p-4 shadow-md">
+    <header className="bg-gray-100 p-2 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <ul className="flex justify-between items-center p-4  w-full"  >
+        <ul className="flex justify-between items-center p-2  w-full"  >
           <li>
             <p className="text-2xl font-semibold text-gray-800">Exclusive</p>
           </li>
