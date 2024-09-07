@@ -7,7 +7,7 @@ export default function Section() {
   return (
     <div>
       <div className="   bg-gray-950">
-        <div className="container  section max-w-[1200px]">
+        <div className="container max-w-[1200px] mx-auto px-4">
             <div className="section-box flex flex-col-reverse lg:flex-row items-center lg:space-x-24">
                 <ul className='h-auto p-8 md:p-16 flex flex-col space-y-8'>
                     <li className='flex items-center space-x-6 md:space-x-9'>

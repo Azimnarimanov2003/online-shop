@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import red1 from '../images/qizil.png';
 import like from '../images/like1.png';
-import likeRed from '../images/like-red.png'; // Qizil rangdagi like rasm
+import likeRed from '../images/like-red.png';
 import kuz from '../images/kuz.png';
 import left from '../images/chapga.png';
 import right from '../images/ungga.png';
@@ -22,23 +22,24 @@ const GalleryItem = ({ pic, like, likeRed, kuz }) => {
   };
 
   return (
-    <li className='w-full h-60 flex items-center justify-center bg-[#F5F5F5] relative'>
+    
+    <li className='w-full  h-60 flex items-center justify-center bg-[#F5F5F5] relative overflow-hidden group'>
       <img 
         src={pic} 
         alt="picture" 
-        className={`w-44 h-auto object-cover ${pic === pic1 ? 'custom-pic1-size' : ''}`} 
+        className={`w-44 h-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-110 ${pic === pic1 ? 'custom-pic1-size' : ''}`} 
       />
       <div className='absolute top-2 right-2 flex flex-col gap-2 p-2'>
         <img 
           src={liked ? likeRed : like} 
           alt="like" 
-          className='w-4 h-5 cursor-pointer' 
+          className='w-4 h-5 cursor-pointer transition-transform duration-300 ease-in-out group-hover:scale-110' 
           onClick={handleLikeClick} 
         />
         <img 
           src={kuz} 
           alt="kuz" 
-          className='w-4 h-5' 
+          className='w-4 h-5 transition-transform duration-300 ease-in-out group-hover:scale-110' 
         />
       </div>
     </li>
@@ -47,15 +48,15 @@ const GalleryItem = ({ pic, like, likeRed, kuz }) => {
 
 export default function Gallery() {
   return (
-    <div className="container max-w-[1200px] mx-auto px-4">
+    <div className="container max-w-[1200px] mx-auto px-4 pt-4">
       <div className='flex items-center gap-5 text-red-900 mb-6'>
         <img src={red1} alt="redi" className="w-8 h-8" />
         <p className='text-red-900 text-xl'>Categories</p>
       </div>
 
       <div className='flex justify-between gap-5 mb-6'>
-        <img src={left} alt="left" className="w-8 h-8 cursor-pointer" />
-        <img src={right} alt="right" className="w-8 h-8 cursor-pointer" />
+        <img src={left} alt="left" className="w-8 h-8 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110" />
+        <img src={right} alt="right" className="w-8 h-8 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110" />
       </div>
 
       <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
@@ -69,6 +70,10 @@ export default function Gallery() {
           />
         ))}
       </ul>
+
+      <button className="bg-red-500 text-white py-2 px-4 mt-10 mb-5 rounded mx-auto block hover:bg-white hover:text-red-500 transition-colors duration-300">
+        View All Products
+      </button>
     </div>
   );
 }
