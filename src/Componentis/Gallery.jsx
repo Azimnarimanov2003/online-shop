@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import red1 from '../images/qizil.png';
 import like from '../images/like1.png';
 import likeRed from '../images/like-red.png';
@@ -12,39 +12,19 @@ import pic4 from '../images/pic4.png';
 import pic5 from '../images/pic5.png';
 import pic6 from '../images/pic6.png';
 import pic7 from '../images/pic7.png';
-import pic8 from '../images/pic8.png';
+import GalleryItem from '../Componentis/GalleryItem'; // To'g'ri yo'lni tekshiring
 
-const GalleryItem = ({ pic, like, likeRed, kuz }) => {
-  const [liked, setLiked] = useState(false);
-
-  const handleLikeClick = () => {
-    setLiked(!liked);
-  };
-
-  return (
-    
-    <li className='w-full  h-60 flex items-center justify-center bg-[#F5F5F5] relative overflow-hidden group'>
-      <img 
-        src={pic} 
-        alt="picture" 
-        className={`w-44 h-auto object-cover transition-transform duration-300 ease-in-out group-hover:scale-110 ${pic === pic1 ? 'custom-pic1-size' : ''}`} 
-      />
-      <div className='absolute top-2 right-2 flex flex-col gap-2 p-2'>
-        <img 
-          src={liked ? likeRed : like} 
-          alt="like" 
-          className='w-4 h-5 cursor-pointer transition-transform duration-300 ease-in-out group-hover:scale-110' 
-          onClick={handleLikeClick} 
-        />
-        <img 
-          src={kuz} 
-          alt="kuz" 
-          className='w-4 h-5 transition-transform duration-300 ease-in-out group-hover:scale-110' 
-        />
-      </div>
-    </li>
-  );
-};
+export const products = [
+  { id: 1, pic: pic1, name: "Mahsulot 1", description: "Bu mahsulot 1ning tavsifi.", price: "$10" },
+  { id: 2, pic: pic2, name: "Mahsulot 2", description: "Bu mahsulot 2ning tavsifi.", price: "$20" },
+  { id: 3, pic: pic3, name: "Mahsulot 3", description: "Bu mahsulot 3ning tavsifi.", price: "$30" },
+  { id: 4, pic: pic4, name: "Mahsulot 4", description: "Bu mahsulot 4ning tavsifi.", price: "$40" },
+  { id: 5, pic: pic5, name: "Mahsulot 5", description: "Bu mahsulot 5ning tavsifi.", price: "$50" },
+  { id: 6, pic: pic6, name: "Mahsulot 6", description: "Bu mahsulot 6ning tavsifi.", price: "$60" },
+  { id: 7, pic: pic7, name: "Mahsulot 7", description: "Bu mahsulot 7ning tavsifi.", price: "$70" },
+  { id: 8, pic: pic7, name: "Mahsulot 8", description: "Bu mahsulot 8ning tavsifi.", price: "$80" },
+  // Qo'shimcha mahsulotlar
+];
 
 export default function Gallery() {
   return (
@@ -60,13 +40,17 @@ export default function Gallery() {
       </div>
 
       <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-        {[pic7, pic2, pic3, pic4, pic5, pic6, pic7, pic8].map((pic, index) => (
+        {products.map((product) => (
           <GalleryItem 
-            key={index}
-            pic={pic} 
+            key={product.id}
+            pic={product.pic} 
             like={like} 
             likeRed={likeRed} 
             kuz={kuz} 
+            id={product.id}
+            name={product.name}
+            description={product.description}
+            price={product.price}
           />
         ))}
       </ul>
