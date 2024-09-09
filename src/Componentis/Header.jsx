@@ -19,8 +19,8 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gray-100 p-2 shadow-md border-b border-slate-400">
-      <div className="container max-w-[1200px] mx-auto px-4">
+    <header className=" z-50 bg-gray-100 p-2  shadow-md border-b  border-slate-400 fixed top-0 left-0 right-0">
+      <div className="container max-w-[1200px] mx-auto px-4  ">
         <div className="container mx-auto flex justify-between items-center">
           <p className="text-2xl font-semibold text-gray-800">Exclusive</p>
 

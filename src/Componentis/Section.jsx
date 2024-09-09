@@ -5,8 +5,8 @@ import iphone from '../images/iphone.png'
 
 export default function Section() {
   return (
-    <div>
-      <div className="   bg-gray-950">
+    // <div>
+      <div className="bg-gray-950 mt-8">
         <div className="container max-w-[1200px] mx-auto px-4">
             <div className="section-box flex flex-col-reverse lg:flex-row items-center lg:space-x-24">
                 <ul className='h-auto p-8 md:p-16 flex flex-col space-y-8'>
@@ -26,12 +26,12 @@ export default function Section() {
                         <img src={vector} alt="vector" className='w-4 md:w-6 lg:w-8'/>
                     </li>
                 </ul>
-                <div className='flex justify-center w-full lg:w-auto mb-8 lg:mb-0'>
+                     <div className='flex justify-center w-full lg:w-auto mb-8 lg:mb-0'>
                     <img src={iphone} alt="img" className='w-full h-auto max-w-xs  sm:max-w-sm md:max-w-sm lg:max-w-full'/>
                 </div>
             </div>
         </div>
       </div>
-    </div>
+    // </div>
   )
 }

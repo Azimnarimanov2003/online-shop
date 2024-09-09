@@ -38,10 +38,10 @@ export default function Korzinka() {
 
   return (
     <>
-      <div className='mx-auto max-w-[1200px]'>
+      <div className='mx-auto max-w-[1200px]  mt-8'>
         <h1>Siz buyurtma qilgan tovarlar</h1>
         {cards && cards.map(product => (
-          <div key={product.id} className="w-80 h-60 mt-4 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row mb-4">
+          <div key={product.id} className="w-80 h-60 mt-8 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row mb-4 ">
             <div className="md:w-80 md:h-80">
               <img src={product.pic} alt={product.name} className="w-32 h-36 object-cover m-4" />
             </div>
