@@ -12,7 +12,7 @@ import pic4 from '../images/pic4.png';
 import pic5 from '../images/pic5.png';
 import pic6 from '../images/pic6.png';
 import pic7 from '../images/pic7.png';
-import GalleryItem from '../Componentis/GalleryItem'; // To'g'ri yo'lni tekshiring
+import GalleryItem from './GalleryItem';
 
 export const products = [
   { id: 1, pic: pic1, name: "Mahsulot 1", description: "Bu mahsulot 1ning tavsifi.", price: "$10" },
@@ -23,10 +23,11 @@ export const products = [
   { id: 6, pic: pic6, name: "Mahsulot 6", description: "Bu mahsulot 6ning tavsifi.", price: "$60" },
   { id: 7, pic: pic7, name: "Mahsulot 7", description: "Bu mahsulot 7ning tavsifi.", price: "$70" },
   { id: 8, pic: pic7, name: "Mahsulot 8", description: "Bu mahsulot 8ning tavsifi.", price: "$80" },
-  // Qo'shimcha mahsulotlar
 ];
 
 export default function Gallery() {
+ 
+
   return (
     <div className="container max-w-[1200px] mx-auto px-4 pt-4">
       <div className='flex items-center gap-5 text-red-900 mb-6'>

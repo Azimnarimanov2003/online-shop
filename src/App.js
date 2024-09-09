@@ -9,6 +9,7 @@ import Sidebar from './Componentis/Sidebar';
 import Wrap from './Componentis/Wrap';
 import ProductDetails from './Componentis/ProductDetails'; // Mahsulot sahifasini import qilish
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Router komponentlarini import qilish
+import Korzinka from './Componentis/Korzinka';
 
 function App() {
   return (
@@ -23,10 +24,12 @@ function App() {
             <Body />
             <Enter />
             <Sidebar />
-            <Footer />
+           
           </>} />
           <Route path="/productdetails/:id" element={<ProductDetails/>} />
+          <Route path="/korzinka" element={<Korzinka/>} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

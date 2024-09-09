@@ -19,7 +19,7 @@ export default function Footer() {
             </li>
             <p className="mt-3 text-base">Get 10% off your first order</p>
             <input className="w-full mt-5 p-2 bg-transparent border border-white placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white" type="text" placeholder="Enter your email" />
-          </ul>
+          </ul>``
         </div>
 
         {/* Support Section */}
