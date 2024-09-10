@@ -15,15 +15,17 @@ import pic7 from '../images/pic7.png';
 import GalleryItem from './GalleryItem';
 
 export const products = [
-  { id: 1, pic: pic1, name: "Mahsulot 1", description: "Bu mahsulot 1ning tavsifi.", price: "$10" },
-  { id: 2, pic: pic2, name: "Mahsulot 2", description: "Bu mahsulot 2ning tavsifi.", price: "$20" },
-  { id: 3, pic: pic3, name: "Mahsulot 3", description: "Bu mahsulot 3ning tavsifi.", price: "$30" },
-  { id: 4, pic: pic4, name: "Mahsulot 4", description: "Bu mahsulot 4ning tavsifi.", price: "$40" },
-  { id: 5, pic: pic5, name: "Mahsulot 5", description: "Bu mahsulot 5ning tavsifi.", price: "$50" },
-  { id: 6, pic: pic6, name: "Mahsulot 6", description: "Bu mahsulot 6ning tavsifi.", price: "$60" },
-  { id: 7, pic: pic7, name: "Mahsulot 7", description: "Bu mahsulot 7ning tavsifi.", price: "$70" },
-  { id: 8, pic: pic7, name: "Mahsulot 8", description: "Bu mahsulot 8ning tavsifi.", price: "$80" },
+  { id: 1, pic: pic1, name: "Sezar", description: "Sezar salati — tovuqli, lattuce va mazali salat!", price: 10 },
+  { id: 2, pic: pic2, name: "Kamera", description: "Bu mahsulot 2ning tavsifi.", price: 20 },
+  { id: 3, pic: pic3, name: "Notebook", description: "Bu mahsulot 3ning tavsifi.", price: 30 },
+  { id: 4, pic: pic4, name: "Carding", description: "Bu mahsulot 4ning tavsifi.", price: 40 },
+  { id: 5, pic: pic5, name: "moshina ", description: "Bu mahsulot 5ning tavsifi.", price: 50 },
+  { id: 6, pic: pic6, name: "Butsa", description: "Bu mahsulot 6ning tavsifi.", price: 60 },
+  { id: 7, pic: pic7, name: "Playstation", description: "Bu mahsulot 7ning tavsifi.", price: 70 },
+  { id: 8, pic: pic7, name: "Playstation", description: "Bu mahsulot 8ning tavsifi.", price: 80 },
 ];
+
+
 
 export default function Gallery() {
  

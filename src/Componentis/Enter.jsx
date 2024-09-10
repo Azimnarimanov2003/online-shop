@@ -7,7 +7,7 @@ import picture3 from '../images/picture4.png';
 
 export default function Enter() {
   return (
-    <div className="mx-auto max-w-[1200px] p-5">
+    <div  id='contact' className="mx-auto max-w-[1200px] p-5">
       <ul className="list-none">
         <li className="flex items-center gap-3">
           <img className="w-8 h-10" src={logo} alt="Services Icon" />

@@ -19,16 +19,16 @@ export default function Header() {
   };
 
   return (
-    <header className=" z-50 bg-gray-100 p-2  shadow-md border-b  border-slate-400 fixed top-0 left-0 right-0">
+    <header  id='home'   className=" z-50 bg-gray-100 p-2  shadow-md border-b  border-slate-400 fixed top-0 left-0 right-0">
       <div className="container max-w-[1200px] mx-auto px-4  ">
         <div className="container mx-auto flex justify-between items-center">
           <p className="text-2xl font-semibold text-gray-800">Exclusive</p>
 
           <nav className="hidden md:flex items-center space-x-10">
-            <a href="#" className="text-gray-950 text-xl hover:text-blue-500">Home</a>
-            <a href="#" className="text-gray-950 text-xl hover:text-blue-500">Contact</a>
-            <a href="#" className="text-gray-950 text-xl hover:text-blue-500">About</a>
-            <a href="#" className="text-gray-950 text-xl hover:text-blue-500">Sign in</a>
+            <a href="#home" className="text-gray-950 text-xl hover:text-blue-500">Home</a>
+            <a href="#contact" className="text-gray-950 text-xl hover:text-blue-500">Contact</a>
+            <a href="#gallery" className="text-gray-950 text-xl hover:text-blue-500">About</a>
+            <a href="#footer" className="text-gray-950 text-xl hover:text-blue-500">Sign in</a>
           </nav>
 
           <div className="flex items-center space-x-5">
@@ -56,7 +56,7 @@ export default function Header() {
               </div>
             </div>
 
-            <img src={like} alt="like" className="h-8 w-8" />
+          
             <Link to="/korzinka">
               <div className="relative">
                 <img src={savat} alt="savat" className="h-8 w-8" />

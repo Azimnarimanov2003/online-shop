@@ -4,7 +4,7 @@ import qrkod1 from '../images/Frame.png'
 
 export default function Footer() {
   return (
-      <div  className='bg-[#222] pt-1'>
+      <div  id='footer' className='bg-[#222] pt-1'>
     <div className="container max-w-[1200px] mx-auto px-4 py-10  text-white">
       <div className="flex flex-wrap gap-6 justify-between items-start">
         

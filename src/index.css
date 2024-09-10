@@ -9,5 +9,8 @@
     max-width: 1200px; 
   }
 }
+* {
+  scroll-behavior: smooth;
+}
 
 

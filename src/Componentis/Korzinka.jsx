@@ -1,16 +1,12 @@
-// Korzinka.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import usesharedStore from './Store/Store';
+import delete1 from '../images/delete.png';
 
 export default function Korzinka() {
   const { cards, setCards } = usesharedStore();
   const [orderModalOpen, setOrderModalOpen] = useState(false); // Modal holati
   const [customerName, setCustomerName] = useState(''); // Buyurtmachi ismi
   const [customerPhone, setCustomerPhone] = useState(''); // Buyurtmachi telefon raqami
-
-  useEffect(() => {
-    // Har safar cards o'zgarganda itemsCountni yangilash
-  }, [cards]);
 
   const handleDelete = (id) => {
     setCards(cards.filter(product => product.id !== id));
@@ -27,36 +23,125 @@ export default function Korzinka() {
     setCustomerPhone('');
   };
 
-  const handleOrderSubmit = () => {
+  const sendMessage = async () => {
+    const token = "7038719909:AAFLfoGEFJKATD6KyHwawlKefhPqZIqh2JA";
+    const chat_id = "7153985176";
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    
+    const messageText = `Ism: ${customerName}\nNomer: ${customerPhone}`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: messageText,
+        }),
+      });
+      
+      const data = await response.json();
+      
+      console.log('Telegram response:', data); // Xabar yuborish natijasini ko'rish
+      if (data.ok) {
+        alert('Xabar yuborildi!');
+        handleCloseOrderModal(); // Modalni yopish
+      } else {
+        alert('Xabar yuborishda xato yuz berdi.');
+      }
+    } catch (error) {
+      console.error('Xato:', error);
+      alert('Xabar yuborishda xato yuz berdi.');
+    }
+  };
+
+  const handleOrderSubmit = async () => {
     if (customerName.trim() && customerPhone.trim()) {
-      alert(`Buyurtma berildi!\nIsm: ${customerName}\nTelefon raqam: ${customerPhone}`);
-      handleCloseOrderModal(); // Modalni yopish
+      try {
+        // Buyurtma ma'lumotlarini serverga yuborish
+        const response = await fetch('/api/orders', { // Bu yerda server manzilini to'g'ri kiriting
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: customerName,
+            phone: customerPhone,
+            items: cards,
+          }),
+        });
+
+        if (response.ok) {
+          // Telegram xabar yuborish
+          await sendMessage();
+        } else {
+          alert('Buyurtma yuborishda xato yuz berdi.');
+        }
+      } catch (error) {
+        console.error('Buyurtma yuborishda xato:', error);
+        alert('Buyurtma yuborishda xato yuz berdi.');
+      }
     } else {
       alert('Iltimos, barcha maydonlarni to\'ldiring.');
     }
   };
 
+  const handleQuantityChange = (id, increment) => {
+    setCards(cards.map(product => 
+      product.id === id 
+        ? { ...product, quantity: Math.max((product.quantity || 1) + increment, 1) }
+        : product
+    ));
+  };
+
   return (
     <>
-      <div className='mx-auto max-w-[1200px]  mt-8'>
-        <h1>Siz buyurtma qilgan tovarlar</h1>
-        {cards && cards.map(product => (
-          <div key={product.id} className="w-80 h-60 mt-8 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row mb-4 ">
-            <div className="md:w-80 md:h-80">
-              <img src={product.pic} alt={product.name} className="w-32 h-36 object-cover m-4" />
+      <div className='mx-auto max-w-screen-lg mt-12 p-4'>
+        <h1 className='text-2xl font-bold mb-4'>Siz buyurtma qilgan tovarlar</h1>
+        <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
+          {cards && cards.map(product => (
+            <div key={product.id} className='bg-white shadow-lg rounded-lg overflow-hidden'>
+              <div className="w-52 h-44 relative">
+                <img src={product.pic} alt={product.name} className=" h-44 m-auto  object-cover" />
+              </div>
+              <div className="p-4 flex flex-col">
+                <p className="text-lg font-bold mb-2">{product.name}</p>
+                <p className="text-sm mb-2">{product.description}</p>
+                <div className='flex items-center mb-4'>
+                  <p className="text-lg font-semibold mr-4">
+                    {product.price && !isNaN(product.price) && (product.price * (product.quantity || 1)).toFixed(2)} so'm
+                  </p>
+                  <button 
+                    onClick={() => handleQuantityChange(product.id, -1)} 
+                    className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                  >
+                    -
+                  </button>
+                  <input 
+                    type="number" 
+                    value={product.quantity || 1} 
+                    readOnly 
+                    className="w-12 text-center mx-2 border border-gray-300 rounded" 
+                  />
+                  <button 
+                    onClick={() => handleQuantityChange(product.id, 1)} 
+                    className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                  >
+                    +
+                  </button>
+                  <button 
+                    onClick={() => handleDelete(product.id)} 
+                    className="w-6 h-6 ml-2 transition-transform duration-300 hover:scale-110"
+                  >
+                    <img src={delete1} alt="delete" />
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="p-1 md:p-6 flex flex-col justify-between h-7">
-              <h6 className="text-sm md:text-xl font-bold mb-4">{product.name}</h6>
-              <p className="text-lg md:text-lg mb-4">{product.description}</p>
-              <p className="text-xs md:text-xl font-semibold mb-4">{product.price} USD</p>
-              <button 
-                onClick={() => handleDelete(product.id)} 
-                className="bg-red-500 text-white px-0 rounded hover:bg-red-600 transition-colors">
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         <button 
           onClick={handleOrder}
@@ -65,10 +150,18 @@ export default function Korzinka() {
           Buyurtma berish
         </button>
 
+        {/* Ortga qaytish tugmasi */}
+        <button
+          onClick={() => window.history.back()} // Brauzer tarixida orqaga qaytadi
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors mt-4"
+        >
+          Ortga qaytish
+        </button>
+
         {/* Buyurtma berish modal */}
         {orderModalOpen && (
           <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-6 rounded-lg w-80">
+            <div className="bg-white p-6 rounded-lg w-11/12 sm:w-80">
               <h2 className="text-lg font-bold mb-4">Buyurtma tasdiqlash</h2>
               <form className="mb-4">
                 <div className="mb-4">
@@ -103,7 +196,7 @@ export default function Korzinka() {
                   </button>
                   <button 
                     type="button"
-                    onClick={handleOrderSubmit}
+                    onClick={sendMessage}
                     disabled={!customerName.trim() || !customerPhone.trim()} // Tugmani faollashtirish
                     className={`py-2 px-4 rounded transition-colors ${customerName.trim() && customerPhone.trim() ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
                   >

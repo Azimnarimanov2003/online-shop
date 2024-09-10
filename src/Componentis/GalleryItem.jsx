@@ -30,7 +30,7 @@ const GalleryItem = ({ pic, like, likeRed, kuz, id, name, description, price }) 
 
   return (
     <li className='w-full max-w-xs h-80 flex flex-col items-center justify-between bg-[#F5F5F5] relative rounded-lg overflow-hidden'>
-      <div className='w-full h-56 flex items-center justify-center overflow-hidden'>
+      <div  id='gallery' className='w-full h-56 flex items-center justify-center overflow-hidden'>
         <img 
           src={pic} 
           alt={name} 
@@ -42,7 +42,7 @@ const GalleryItem = ({ pic, like, likeRed, kuz, id, name, description, price }) 
         <h2 className='text-lg md:text-xl font-bold mb-2'>{name}</h2>
         <p className='text-sm md:text-base mb-2'>{description}</p>
         <div className='flex gap-2 items-center'>
-          <p className='text-lg font-semibold'>{price}</p>
+          <p className='text-lg font-semibold'>{price} $</p>
           <button 
             onClick={handleAdd} 
             className={`bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600 transition-colors ${addedToCart ? 'cursor-not-allowed opacity-50' : ''}`}
