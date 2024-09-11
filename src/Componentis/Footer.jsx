@@ -28,7 +28,6 @@ export default function Footer() {
             <li className="mb-5">
               <a className="text-xl font-medium hover:text-gray-400 transition" href="#">Support</a>
             </li>
-            <p className="text-base">111 Bijoy Sarani, Dhaka, DH 1515, Bangladesh.</p>
             <li className="mt-3">
               <a className="text-base hover:text-gray-400 transition" href="mailto:azimnarimoanov@gmail.com">azimnarimonov@gmail.com</a>
             </li>
@@ -36,50 +35,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Account Section */}
-        <div>
-          <ul>
-            <li className="mb-5">
-              <a className="text-xl font-medium hover:text-gray-400 transition" href="#">Account</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">My Account</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Login / Register</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Cart</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Wishlist</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Shop</a>
-            </li>
-          </ul>
-        </div>
-
-        {/* Quick Links Section */}
-        <div>
-          <ul>
-            <li className="mb-5">
-              <a className="text-xl font-medium hover:text-gray-400 transition" href="#">Quick Links</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Privacy Policy</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Terms Of Use</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">FAQ</a>
-            </li>
-            <li className="mt-3">
-              <a className="text-base hover:text-gray-400 transition" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
+   
 
         {/* Download App Section */}
         <div>
@@ -91,8 +47,16 @@ export default function Footer() {
               <a className="text-base hover:text-gray-400 transition" href="#">Save $3 with App New User Only</a>
             </li>
             <ul className="flex justify-center gap-5 mt-5">
-              <li><img className="w-20 h-20" src={qrkod} alt="App Icon 1" /></li>
-              <li><img className="w-[110px] h-[80px]" src={qrkod1} alt="App Icon 2" /></li>
+            <li>
+  <a href="tel:+998339260003">
+    <img className="w-20 h-20" src={qrkod} alt="App Icon 1" />
+  </a>
+</li>
+<li>
+  <a href="tel:+998339260003">
+    <img className="w-[110px] h-[80px]" src={qrkod1} alt="App Icon 2" />
+  </a>
+</li>
               
             </ul>
           </ul>

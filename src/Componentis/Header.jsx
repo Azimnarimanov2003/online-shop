@@ -22,7 +22,7 @@ export default function Header() {
     <header  id='home'   className=" z-50 bg-gray-100 p-2  shadow-md border-b  border-slate-400 fixed top-0 left-0 right-0">
       <div className="container max-w-[1200px] mx-auto px-4  ">
         <div className="container mx-auto flex justify-between items-center">
-          <p className="text-2xl font-semibold text-gray-800">Exclusive</p>
+        <Link to="/" className="text-2xl font-semibold text-gray-800">Exclusive</Link>
 
           <nav className="hidden md:flex items-center space-x-10">
             <a href="#home" className="text-gray-950 text-xl hover:text-blue-500">Home</a>
