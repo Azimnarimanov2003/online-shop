@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import rasm from "../images/kalonka.png";
 
 const TELEGRAM_BOT_API_URL = 'https://api.telegram.org/bot7038719909:AAFLfoGEFJKATD6KyHwawlKefhPqZIqh2JA/sendMessage';
@@ -10,7 +12,7 @@ export default function Body() {
     const now = new Date();
     const difference = targetDate - now;
 
-    let days = Math.floor(difference / (1000 * 60 * 2100 * 24));
+    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
     let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
@@ -61,6 +63,7 @@ export default function Body() {
 
     closeModal();
     setSubmitted(true);
+    toast.success('Xabar yuborildi!'); // Toast notification
     setName('');
     setPhone('');
   };
@@ -75,7 +78,7 @@ export default function Body() {
   return (
     <div className='p-4 bg-black'>
       <div className="container max-w-[1200px] mx-auto px-4">
-        <div className='flex flex-col lg:flex-row gap-10 lg:gap-36  pt-10 pb-10'>
+        <div className='flex flex-col lg:flex-row gap-10 lg:gap-36 pt-10 pb-10'>
           <div className='flex-1'>
             <ul className="list-none pt-10 m-0">
               <li>
@@ -159,6 +162,9 @@ export default function Body() {
           </div>
         </div>
       )}
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 }

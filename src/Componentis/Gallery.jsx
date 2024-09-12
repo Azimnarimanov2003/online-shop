@@ -37,10 +37,7 @@ export default function Gallery() {
         <p className='text-red-900 text-xl'>Categories</p>
       </div>
 
-      <div className='flex justify-between gap-5 mb-6'>
-        <img src={left} alt="left" className="w-8 h-8 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110" />
-        <img src={right} alt="right" className="w-8 h-8 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110" />
-      </div>
+    
 
       <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
         {products.map((product) => (

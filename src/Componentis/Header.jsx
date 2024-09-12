@@ -32,29 +32,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-5">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Qidiruv..."
-                className="border border-gray-300 rounded pl-8 pr-3 py-1 w-full md:w-64 md:pl-10 md:pr-4 md:py-2 focus:outline-none focus:border-blue-500"
-              />
-              <div className="absolute inset-y-0 left-0 flex items-center pl-2 md:pl-3 pointer-events-none">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400 md:h-5 md:w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-4.35-4.35m2.09-4.24A7.5 7.5 0 1111.75 2a7.5 7.5 0 017.5 7.5z"
-                  />
-                </svg>
-              </div>
-            </div>
+            
 
           
             <Link to="/korzinka">

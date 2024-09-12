@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css'; 
+ import rasm from "../images/kalonka.png";
 import logo from '../images/qizil.png';
 import pictur from '../images/picture1.png';
 import picture1 from '../images/picture2.png';
@@ -19,6 +22,8 @@ export default function Enter() {
   const closeModal = () => {
     setIsModalOpen(false);
     setError(''); // Error message ni tozalash
+    setName(''); // Formani tozalash
+    setPhone(''); // Formani tozalash
   };
 
   const handleClickOutside = (e) => {
@@ -38,15 +43,18 @@ export default function Enter() {
 
     // Telegramga xabar yuborish
     const message = `Name: ${name}\nPhone: ${phone}`;
-    await fetch(`${TELEGRAM_BOT_API_URL}?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`, {
-      method: 'POST',
-    });
-
-    // Modalni yopish va formani tozalash
-    closeModal();
-    setSubmitted(true);
-    setName('');
-    setPhone('');
+    try {
+      await fetch(`${TELEGRAM_BOT_API_URL}?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`, {
+        method: 'POST',
+      });
+      toast.success('Xabar yuborildi!');
+      // Modalni yopish va formani tozalash
+      closeModal();
+      setSubmitted(true);
+    } catch (error) {
+      toast.error('Xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.');
+      setError('Xatolik yuz berdi');
+    }
   };
 
   useEffect(() => {
@@ -136,21 +144,14 @@ export default function Enter() {
                 />
               </div>
               <button type="submit" className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">Submit</button>
-              {error && (
-                <p className="mt-4 text-red-500 text-center">{error}</p>
-              )}
+              {error && <p className="text-red-500">{error}</p>}
             </form>
-            {submitted && !error && (
-              <p className="mt-4 text-green-500 text-center">Yuborildi!</p>
-            )}
-            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">X</button>
           </div>
         </div>
       )}
+ {/* Toast Container */}
+ <ToastContainer />
     </div>
   );
 }

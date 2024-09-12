@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import usesharedStore from './Store/Store';
 import delete1 from '../images/delete.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Korzinka() {
   const { cards, setCards } = usesharedStore();
-  const [orderModalOpen, setOrderModalOpen] = useState(false); // Modal holati
-  const [customerName, setCustomerName] = useState(''); // Buyurtmachi ismi
-  const [customerPhone, setCustomerPhone] = useState(''); // Buyurtmachi telefon raqami
+  const [orderModalOpen, setOrderModalOpen] = useState(false);
+  const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
 
   const handleDelete = (id) => {
     setCards(cards.filter(product => product.id !== id));
@@ -18,7 +20,6 @@ export default function Korzinka() {
 
   const handleCloseOrderModal = () => {
     setOrderModalOpen(false);
-    // Reset customer info
     setCustomerName('');
     setCustomerPhone('');
   };
@@ -44,24 +45,22 @@ export default function Korzinka() {
       
       const data = await response.json();
       
-      console.log('Telegram response:', data); // Xabar yuborish natijasini ko'rish
       if (data.ok) {
-        alert('Xabar yuborildi!');
-        handleCloseOrderModal(); // Modalni yopish
+        toast.success('Xabar yuborildi!');
+        handleCloseOrderModal();
       } else {
-        alert('Xabar yuborishda xato yuz berdi.');
+        toast.error('Xabar yuborishda xato yuz berdi.');
       }
     } catch (error) {
       console.error('Xato:', error);
-      alert('Xabar yuborishda xato yuz berdi.');
+      toast.error('Xabar yuborishda xato yuz berdi.');
     }
   };
 
   const handleOrderSubmit = async () => {
     if (customerName.trim() && customerPhone.trim()) {
       try {
-        // Buyurtma ma'lumotlarini serverga yuborish
-        const response = await fetch('/api/orders', { // Bu yerda server manzilini to'g'ri kiriting
+        const response = await fetch('/api/orders', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -74,17 +73,16 @@ export default function Korzinka() {
         });
 
         if (response.ok) {
-          // Telegram xabar yuborish
           await sendMessage();
         } else {
-          alert('Buyurtma yuborishda xato yuz berdi.');
+          toast.error('Buyurtma yuborishda xato yuz berdi.');
         }
       } catch (error) {
         console.error('Buyurtma yuborishda xato:', error);
-        alert('Buyurtma yuborishda xato yuz berdi.');
+        toast.error('Buyurtma yuborishda xato yuz berdi.');
       }
     } else {
-      alert('Iltimos, barcha maydonlarni to\'ldiring.');
+      toast.warn('Iltimos, barcha maydonlarni to\'ldiring.');
     }
   };
 
@@ -142,7 +140,7 @@ export default function Korzinka() {
             </div>
           ))}
         </div>
-
+<div  className=' flex gap-7'>
         <button 
           onClick={handleOrder}
           className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors mt-4"
@@ -150,15 +148,13 @@ export default function Korzinka() {
           Buyurtma berish
         </button>
 
-        {/* Ortga qaytish tugmasi */}
         <button
-          onClick={() => window.history.back()} // Brauzer tarixida orqaga qaytadi
+          onClick={() => window.history.back()}
           className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors mt-4"
         >
           Ortga qaytish
         </button>
-
-        {/* Buyurtma berish modal */}
+        </div>
         {orderModalOpen && (
           <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
             <div className="bg-white p-6 rounded-lg w-11/12 sm:w-80">
@@ -171,18 +167,18 @@ export default function Korzinka() {
                     id="customerName"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 block  pl-2  w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="customerPhone" className="block text-sm font-medium text-gray-700">Telefon raqam</label>
-                  <input
+                  <label htmlFor="customerPhone" className="block text-sm font-medium  text-gray-700">Telefon raqam</label>
+                  <input  
                     type="text"
                     id="customerPhone"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="mt-1 pl-2  block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required
                   />
                 </div>
@@ -192,21 +188,23 @@ export default function Korzinka() {
                     onClick={handleCloseOrderModal}
                     className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
                   >
-                    Yopish
+                    Cancel
                   </button>
                   <button 
                     type="button"
                     onClick={sendMessage}
-                    disabled={!customerName.trim() || !customerPhone.trim()} // Tugmani faollashtirish
+                    disabled={!customerName.trim() || !customerPhone.trim()}
                     className={`py-2 px-4 rounded transition-colors ${customerName.trim() && customerPhone.trim() ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
                   >
-                    Buyurtma berish
+                    Order
                   </button>
                 </div>
               </form>
             </div>
           </div>
         )}
+        {/* ToastContainerni qo'shamiz */}
+        <ToastContainer />
       </div>
     </>
   );
