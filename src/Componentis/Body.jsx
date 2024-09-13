@@ -160,9 +160,7 @@ export default function Body() {
           </div>
         </div>
       )}
-
-      {/* Toast Container */}
-      <ToastContainer />
+      
     </div>
   );
 }

@@ -207,8 +207,7 @@ export default function Korzinka() {
             </div>
           </div>
         )}
-        {/* ToastContainerni qo'shamiz */}
-        <ToastContainer />
+  
       </div>
     </>
   );

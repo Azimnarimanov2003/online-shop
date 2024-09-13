@@ -201,8 +201,7 @@ export default function ProductDetails() {
             </div>
           )}
 
-          {/* Toastify containeri */}
-          <ToastContainer />
+     
         </div>
       </div>
     </div>

@@ -36,6 +36,9 @@ export default function Enter() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Xatolarni tozalash
+    setError('');
+
     // Maydonlar bo'sh bo'lmasligini tekshirish
     if (!name || !phone) {
       setError('Iltimos, barcha maydonlarni to‘ldiring.');
@@ -44,13 +47,19 @@ export default function Enter() {
 
     const message = `Name: ${name}\nPhone: ${phone}`;
     try {
-      await fetch(`${TELEGRAM_BOT_API_URL}?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`, {
+      const response = await fetch(`${TELEGRAM_BOT_API_URL}?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`, {
         method: 'POST',
       });
-      toast.success('Xabar yuborildi!');
-      closeModal(); // Modalni yopish
+
+      // Javobni tekshirish
+      if (response.ok) {
+        toast.success('Xabar yuborildi!');
+        closeModal(); // Modalni yopish
+      } else {
+        throw new Error('Xatolik yuz berdi.');
+      }
     } catch (error) {
-      toast.error('Xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.');
+      // toast.error('Xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.');
       setError('Xatolik yuz berdi.');
     }
   };
@@ -126,31 +135,30 @@ export default function Enter() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Your Name"
-                  className="border border-gray-300 rounded w-full px-3 py-2"
+                  className="w-full px-3 py-2 border rounded-md"
+                  required
                 />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-gray-700">Phone</label>
                 <input
                   id="phone"
-                  type="tel"
+                  type="text"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Your Phone Number"
-                  className="border border-gray-300 rounded w-full px-3 py-2"
+                  className="w-full px-3 py-2 border rounded-md"
+                  required
                 />
               </div>
-              <button type="submit" className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">Submit</button>
-              {error && <p className="text-red-500 mt-2">{error}</p>}
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              <button type="submit" className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg">Submit</button>
             </form>
-            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-300">X</button>
+            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">X</button>
           </div>
         </div>
       )}
 
-      {/* Toast Container */}
-      <ToastContainer />
+    
     </div>
   );
 }
