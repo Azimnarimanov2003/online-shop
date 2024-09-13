@@ -48,12 +48,13 @@ const GalleryItem = ({ pic, like, likeRed, kuz, id, name, description, price }) 
             className={`bg-red-500 text-white py-1 px-3 rounded-lg hover:bg-red-600 transition-colors ${addedToCart ? 'cursor-not-allowed opacity-50' : ''}`}
             disabled={addedToCart} 
           >
-            {addedToCart ? 'Savatga qo\'shildi' : 'Savatga qo\'shish'}
+          {addedToCart ? 'Added to Cart' : 'Add to Cart'}
+
           </button>
         </div>
         {addedToCart && (
           <p className='absolute top-2 left-1/2 transform -translate-x-1/2 bg-green-500 text-white py-1 px-3 rounded-lg text-sm'>
-            Savatga qo'shildi
+           Added to Cart
           </p>
         )}
       </div>

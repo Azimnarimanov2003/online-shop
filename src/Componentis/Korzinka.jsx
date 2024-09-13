@@ -101,7 +101,7 @@ export default function Korzinka() {
   return (
     <>
       <div className='mx-auto max-w-screen-lg mt-12 p-4'>
-        <h1 className='text-2xl font-bold mb-4'>Siz buyurtma qilgan tovarlar</h1>
+        <h1 className='text-2xl font-bold mb-4'>Items you ordered</h1>
         <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
           {cards && cards.map(product => (
             <div key={product.id} className='bg-white shadow-lg rounded-lg overflow-hidden'>
@@ -149,20 +149,20 @@ export default function Korzinka() {
           onClick={handleOrder}
           className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors mt-4"
         >
-          Buyurtma berish
+         Place Order
         </button>
 
         <button
           onClick={() => window.history.back()}
           className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors mt-4"
         >
-          Ortga qaytish
+        Back
         </button>
         </div>
         {orderModalOpen && (
           <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
             <div className="bg-white p-6 rounded-lg w-11/12 sm:w-80">
-              <h2 className="text-lg font-bold mb-4">Buyurtma tasdiqlash</h2>
+              <h2 className="text-lg font-bold mb-4">Order Confirmation</h2>
               <form className="mb-4">
                 <div className="mb-4">
                   <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Ism</label>

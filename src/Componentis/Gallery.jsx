@@ -14,15 +14,16 @@ import pic6 from '../images/pic6.png';
 import pic7 from '../images/pic7.png';
 import GalleryItem from './GalleryItem';
 
+
 export const products = [
-  { id: 1, pic: pic1, name: "Sezar", description: "Sezar salati — tovuqli, lattuce va mazali salat!", price: 10 },
-  { id: 2, pic: pic2, name: "Kamera", description: "Bu mahsulot 2ning tavsifi.", price: 20 },
-  { id: 3, pic: pic3, name: "Notebook", description: "Bu mahsulot 3ning tavsifi.", price: 30 },
-  { id: 4, pic: pic4, name: "Carding", description: "Bu mahsulot 4ning tavsifi.", price: 40 },
-  { id: 5, pic: pic5, name: "moshina ", description: "Bu mahsulot 5ning tavsifi.", price: 50 },
-  { id: 6, pic: pic6, name: "Butsa", description: "Bu mahsulot 6ning tavsifi.", price: 60 },
-  { id: 7, pic: pic7, name: "Playstation", description: "Bu mahsulot 7ning tavsifi.", price: 70 },
-  { id: 8, pic: pic7, name: "Playstation", description: "Bu mahsulot 8ning tavsifi.", price: 80 },
+  { id: 1, pic: pic1, name: "Caesar", description: "Caesar salad — a delicious salad with chicken and lettuce!", price: 10 },
+  { id: 2, pic: pic2, name: "Camera", description: "This is the description of product .", price: 20 },
+  { id: 3, pic: pic3, name: "Notebook", description: "This is the description of product .", price: 30 },
+  { id: 4, pic: pic4, name: "Carding", description: "This is the description of product .", price: 40 },
+  { id: 5, pic: pic5, name: "Car", description: "This is the description of product .", price: 50 },
+  { id: 6, pic: pic6, name: "Football Boots", description: "This is the description of product .", price: 60 },
+  { id: 7, pic: pic7, name: "Playstation", description: "This is the description of product .", price: 70 },
+  { id: 8, pic: pic7, name: "Playstation", description: "This is the description of product .", price: 80 },
 ];
 
 
@@ -39,7 +40,7 @@ export default function Gallery() {
 
     
 
-      <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+      <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-7'>
         {products.map((product) => (
           <GalleryItem 
             key={product.id}
@@ -55,9 +56,6 @@ export default function Gallery() {
         ))}
       </ul>
 
-      <button className="bg-red-500 text-white py-2 px-4 mt-10 mb-5 rounded mx-auto block hover:bg-white hover:text-red-500 transition-colors duration-300">
-        View All Products
-      </button>
     </div>
   );
 }
