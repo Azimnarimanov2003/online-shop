@@ -33,7 +33,7 @@ export default function Korzinka() {
     const chat_id = "7153985176";
     const url = `https://api.telegram.org/bot${token}/sendMessage`;
     
-    const messageText = `Ism: ${customerName}\nNomer: ${customerPhone}`;
+    const messageText = `Name: ${customerName}\nNomer: ${customerPhone}`;
     
     try {
       const response = await fetch(url, {
@@ -165,7 +165,7 @@ export default function Korzinka() {
               <h2 className="text-lg font-bold mb-4">Order Confirmation</h2>
               <form className="mb-4">
                 <div className="mb-4">
-                  <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Ism</label>
+                  <label htmlFor="customerName" className="block text-sm font-medium text-gray-700">Name</label>
                   <input
                     type="text"
                     id="customerName"
@@ -176,7 +176,7 @@ export default function Korzinka() {
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="customerPhone" className="block text-sm font-medium  text-gray-700">Telefon raqam</label>
+                  <label htmlFor="customerPhone" className="block text-sm font-medium  text-gray-700">Phone number</label>
                   <input  
                     type="text"
                     id="customerPhone"
