@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import usesharedStore from './Store/Store';
 import delete1 from '../images/delete.png';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,6 +10,10 @@ export default function Korzinka() {
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
 
+  useEffect(() => {
+    // Sahifani yuklaganda yuqoriga scroll qilish
+    window.scrollTo(0, 0);
+  }, []);
   const handleDelete = (id) => {
     setCards(cards.filter(product => product.id !== id));
   };

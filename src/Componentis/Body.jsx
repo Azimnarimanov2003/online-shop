@@ -2,17 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import rasm from "../images/kalonka.png";
-
-const TELEGRAM_BOT_API_URL = 'https://api.telegram.org/bot7038719909:AAFLfoGEFJKATD6KyHwawlKefhPqZIqh2JA/sendMessage';
-const CHAT_ID = '7153985176';
-
 export default function Body() {
   const calculateTimeLeft = () => {
     const targetDate = new Date('2024-12-31T23:59:59'); // Set your target date here
     const now = new Date();
     const difference = targetDate - now;
 
-    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    let days = Math.floor(difference / (1000 * 60 * 2100 * 24));
     let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((difference % (1000 * 60)) / 1000);
@@ -39,7 +35,7 @@ export default function Body() {
   const closeModal = () => {
     setIsModalOpen(false);
     setError('');
-    setSubmitted(false); // Tozalash
+    setSubmitted(false);
   };
 
   const handleClickOutside = (e) => {
@@ -63,7 +59,9 @@ export default function Body() {
 
     closeModal();
     setSubmitted(true);
-    toast.success('Xabar yuborildi!'); // Toast notification
+
+    // Toast xatosiz chaqirilishi kerak
+    toast.success('Xabar yuborildi!', { position: "top-right" });
     setName('');
     setPhone('');
   };
@@ -168,3 +166,8 @@ export default function Body() {
     </div>
   );
 }
+
+
+
+const TELEGRAM_BOT_API_URL = 'https://api.telegram.org/bot7038719909:AAFLfoGEFJKATD6KyHwawlKefhPqZIqh2JA/sendMessage';
+const CHAT_ID = '7153985176';

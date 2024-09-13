@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { products } from '../Componentis/Gallery';
 import { ToastContainer, toast } from 'react-toastify'; // Toastify import qilamiz
@@ -12,6 +12,11 @@ export default function ProductDetails() {
   const [name, setName] = useState(''); 
   const [phone, setPhone] = useState(''); 
 
+
+  useEffect(() => {
+    // Sahifani yuklaganda yuqoriga scroll qilish
+    window.scrollTo(0, 0);
+  }, []);
   if (!product) {
     return <p>Mahsulot topilmadi.</p>;
   }

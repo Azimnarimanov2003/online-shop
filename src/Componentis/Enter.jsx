@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
- import 'react-toastify/dist/ReactToastify.css'; 
- import rasm from "../images/kalonka.png";
+import 'react-toastify/dist/ReactToastify.css';
+
 import logo from '../images/qizil.png';
 import pictur from '../images/picture1.png';
 import picture1 from '../images/picture2.png';
@@ -15,45 +15,43 @@ export default function Enter() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
-    setError(''); // Error message ni tozalash
+    setError(''); // Xatolarni tozalash
     setName(''); // Formani tozalash
     setPhone(''); // Formani tozalash
   };
 
+  // Modal oynasidan tashqarida bosilgan bo'lsa, oynani yopish uchun
   const handleClickOutside = (e) => {
     if (e.target.id === 'modal-overlay') {
       closeModal();
     }
   };
 
+  // Formani yuborish
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Formani tekshirish
+    // Maydonlar bo'sh bo'lmasligini tekshirish
     if (!name || !phone) {
       setError('Iltimos, barcha maydonlarni to‘ldiring.');
       return;
     }
 
-    // Telegramga xabar yuborish
     const message = `Name: ${name}\nPhone: ${phone}`;
     try {
       await fetch(`${TELEGRAM_BOT_API_URL}?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`, {
         method: 'POST',
       });
       toast.success('Xabar yuborildi!');
-      // Modalni yopish va formani tozalash
-      closeModal();
-      setSubmitted(true);
+      closeModal(); // Modalni yopish
     } catch (error) {
       toast.error('Xatolik yuz berdi. Iltimos, qayta urinib ko‘ring.');
-      setError('Xatolik yuz berdi');
+      setError('Xatolik yuz berdi.');
     }
   };
 
@@ -144,14 +142,15 @@ export default function Enter() {
                 />
               </div>
               <button type="submit" className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg">Submit</button>
-              {error && <p className="text-red-500">{error}</p>}
+              {error && <p className="text-red-500 mt-2">{error}</p>}
             </form>
-            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">X</button>
+            <button onClick={closeModal} className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-300">X</button>
           </div>
         </div>
       )}
- {/* Toast Container */}
- <ToastContainer />
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 }
